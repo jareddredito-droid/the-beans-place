@@ -62,7 +62,7 @@ export default function App() {
         <div className="app">
             {/* NAVBAR */}
             <NavBar />
-            
+
             {/* HERO */}
             <section className="hero bg-hero">
                 <div className="hero-grid">
@@ -81,6 +81,9 @@ export default function App() {
             {/* CONTACT */}
 
             {/* FOOTER */}
+            <section className="bg-footer">
+                <FooterSection />
+            </section>
         </div>
     );
 }
