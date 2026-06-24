@@ -30,7 +30,6 @@
 
 /* --- YOUR IMPORTS GO HERE --- */
 
-
 // STEP 2: Create and export the App component
 // Use: export default function App() { ... }
 //
@@ -57,10 +56,12 @@
 import HeroSection from "./components/HeroSection";
 import NavBar from "./components/NavBar";
 import FooterSection from "./components/FooterSection";
-import ContactForm from "./components/ContactSection"
+import ContactSection from "./components/ContactSection";
+import RibbonTicker from "./components/RibbonTicker";
+import ProductShowcase from "./components/ProductShowcase";
 
 export default function App() {
-    return(
+    return (
         <div className="app">
             {/* NAVBAR */}
             <NavBar />
@@ -72,9 +73,14 @@ export default function App() {
                 </div>
             </section>
 
+            <RibbonTicker />
+
             {/* FEATURES / CAROUSEL */}
 
             {/* PRODUCT SHOWCASE */}
+            <section className="bg-cta">
+                <ProductShowcase />
+            </section>
 
             {/* CTA */}
 
@@ -82,7 +88,8 @@ export default function App() {
 
             {/* CONTACT */}
             <section className="bg-cta" id="contact">
-                <ContactForm />
+                <ContactSection />
+                {/* <ContactForm /> */}
             </section>
 
             {/* FOOTER */}
@@ -92,3 +99,4 @@ export default function App() {
         </div>
     );
 }
+ 
