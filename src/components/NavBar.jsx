@@ -86,6 +86,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/beans_logo.png";
 import Button from "./ui/Button";
 import { useCart } from "../context/CartContext";
+import CartDropdown from "./CartDropdown";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -97,6 +98,8 @@ export default function NavBar() {
   const closeMenu = () => setMenuOpen(false);
 
   const { itemCount } = useCart();
+
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -136,8 +139,22 @@ export default function NavBar() {
           </Button>
         </div>
 
-        <div clasName="hidden items-center gap-4 md:flex">
-      <span className="cart-count">🛒 {itemCount}</span>
+        <div className="hidden items-center gap-4 md:flex">
+          <div className="cart-icon-wrapper">
+            <button
+              type="button"
+              onClick={() => setCartOpen(!cartOpen)}
+              className="cart-icon-button"
+              aria-label="Toggle cart"
+            >
+              🛒 <span className="cart-count">{itemCount}</span>
+            </button>
+
+            <AnimatePresence>
+              {cartOpen && <CartDropdown onClose={() => setCartOpen(false)} />}
+            </AnimatePresence>
+
+          </div>
         </div>
 
         {/* Mobile Hamburger */}
