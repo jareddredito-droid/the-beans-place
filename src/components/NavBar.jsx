@@ -85,6 +85,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/beans_logo.png";
 import Button from "./ui/Button";
+import { useCart } from "../context/CartContext";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -95,8 +96,10 @@ export default function NavBar() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const { itemCount } = useCart();
+
   useEffect(() => {
-    const handleScroll = () => setScrolled(window, scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -127,9 +130,15 @@ export default function NavBar() {
         </nav>
 
         {/* Desktop CTA */}
-        <Button variant="accent" size="sm" className="hidden md:inline-flex">
-          Order Now
-        </Button>
+        <div className="hidden items-center gap-4 md:flex">
+          <Button variant="accent" size="sm" className="hidden md:inline-flex">
+            Order Now
+          </Button>
+        </div>
+
+        <div clasName="hidden items-center gap-4 md:flex">
+      <span className="cart-count">🛒 {itemCount}</span>
+        </div>
 
         {/* Mobile Hamburger */}
         <button
@@ -142,10 +151,10 @@ export default function NavBar() {
             className={`block h-0.5 w-6 bg-black transition-all duration-300 ${menuOpen ? "translate-y-2 rotate-45" : ""}`}
           />
           <span
-            className={` block h-0.5 w-6 bg-black transition-all duration-300 $ {menuOpen ? "opacity-0 : "opacity-100"}`}
+            className={`block h-0.5 w-6 bg-black transition-all duration-300 ${menuOpen ? "opacity-0" : "opacity-100"}`}
           />
           <span
-            className={` block h-0.5 w-6 bg-black transition-all duration-300 ${menuOpen ? "-translate-y-2-rotate-45" : ""}`}
+            className={`block h-0.5 w-6 bg-black transition-all duration-300 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`}
           />
         </button>
       </div>

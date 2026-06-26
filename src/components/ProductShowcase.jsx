@@ -108,6 +108,7 @@ import ScrollReveal, { StaggerContainer, StaggerItem } from "./ui/ScrollReveal";
 import Badge from "./ui/Badge";
 import Button from "./ui/Button";
 import Separator from "./ui/Separator";
+import { useCart } from "../context/CartContext";
 
 import imgEthiopianHarrar from "../assets/Ethiopian-Harrar-Bag.png";
 import imgColombianSupremo from "../assets/Colombian-Supremo-Bag.png";
@@ -174,6 +175,9 @@ const products = [
 ];
 
 export default function ProductShowcase() {
+    const {addItem, items } = useCart()
+    console.log(items);
+
     return(
         <div className="product-showcase">
 
@@ -238,7 +242,7 @@ export default function ProductShowcase() {
                                 <p className="product-notes">
                                     {product.notes}
                                 </p>
-                                <Button variant="primary" size="sm" className="w-full=mt-3">
+                                <Button variant="primary" size="sm" className="w-full=mt-3" onClick={() => addItem(product)}>
                                     Add to cart
                                 </Button>
                             </div>
